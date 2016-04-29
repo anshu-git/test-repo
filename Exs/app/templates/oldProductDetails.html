@@ -1,0 +1,29 @@
+
+<div ng-init="tab=1">
+	<ul class="nav nav-tabs">
+			<li ng-class="{active : tab==1}"><a href="" ng-click="tab=1">Details</a></li>
+			<li ng-class="{active : tab==2}"><a href="" ng-click="tab=2">Reviews</a></li>
+			<li ng-class="{active : tab==3}"><a href="" ng-click="tab=3">MyReviews</a></li>
+		</ul>	
+	<div ng-show="tab == 1">
+		<h3>Details...</h3>
+		<img src="app/images/{{Product.Image}}" width="125"/><!-- A watcher(with an internal method call $watch()) will be ceated coressponding to each {{}}/ng-model/ng-bind in its local scope(here rootScope) -->
+					<h5>{{Product.Name}}</h5>
+					<blockquote>{{Product.Description}}</blockquote>
+					<strong>{{Product.Price | currency:'&#8377;'}}</strong><!--|currency is a FILTER. currency by default takes $  -->
+				
+	</div>
+	<div ng-show="tab == 2">
+		<h3>Reviews...</h3>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="r in Product.Reviews">
+				<span class="badge">{{r.Rating}}</span>
+				<h4>{{r.Comments}}&mdash;<small>{{r.By}}</small></h4>
+			
+			</li>
+		</ul>
+	</div>		
+	<div ng-show="tab == 3">
+		<h3>My Reviews...</h3>
+	</div>
+</div>

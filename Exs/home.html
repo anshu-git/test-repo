@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="app/styles/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="app/styles/style.css"/>
+	<link rel="stylesheet" type="text/css" href="app/styles/angular-ui-notification.min.css"/>
+
+
+	<script type="text/javascript" src="app/lib/angular.js"></script>
+	<script type="text/javascript" src="app/lib/angular-messages.min.js"></script>
+	<script type="text/javascript" src="app/lib/angular-ui-notification.min.js"></script>
+	<!-- App include -->
+
+	<script type="text/javascript" src="app/js/mainMod.js"></script>
+	<script type="text/javascript" src="app/js/mainModValues.js"></script>
+	
+	
+		
+	
+	
+	<title>AngularJS - Web App</title>
+</head>
+<!-- ng-app is a directive which enables angularJs to work on this div part of the page -->
+<body class="container" ng-app="mainMod">
+
+	<div class="panel panel-default" >
+		<header class="panel-heading">
+		<strong>Philips App...</strong>
+		</header>
+		<section class="panel-body">
+			<article class="panel panel-danger panel-body col-sm-3" style="height:500px; overflow: auto;" ng-controller="productsCtrl">
+			<h4>{{ Title }}</h4> <!-- {{}} is a binding expression-->
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="p in Products">
+					<img ng-src="app/images/{{p.Image}}" height="80"/>
+					<strong>{{p.Name}}</strong>
+					<button class="btn btn-sm" ng-click="onSelect(p)">Select</button>	<!-- ngclick===>$rootScope.$apply(onSelect(p)) -->
+				</li>
+
+			</ul>
+			</article>
+			<article class="panel panel-danger panel-body col-md-4" ng-include="'app/templates/product-details.html'">
+				
+				
+			</article>
+		</section>
+		<footer class="well">
+			<strong>Copyright &copy; MyCompany Inc. All rights reserved 2015-16.</strong>
+		</footer>
+	</div>
+</body>
+</html>

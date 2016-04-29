@@ -1,0 +1,55 @@
+<div ng-controller='tabsCtrl as ctrl'>
+	<ul class="nav nav-tabs">
+				<li ng-class="{active : ctrl.isTab(1)}"><a href="" ng-click="ctrl.setTab(1)">Details</a></li>
+				<li ng-class="{active : ctrl.isTab(2)}"><a href="" ng-click="ctrl.setTab(2)">Reviews</a></li>
+				<li ng-class="{active : ctrl.isTab(3)}"><a href="" ng-click="ctrl.setTab(3)">MyReviews</a></li>
+	</ul>	
+		<div ng-show="ctrl.isTab(1)">
+			<h3>Details...</h3>
+			<img src="app/images/{{Product.Image}}" width="125"/><!-- A watcher(with an internal method call $watch()) will be ceated coressponding to each {{}}/ng-model/ng-bind in its local scope(here rootScope) -->
+						<h5>{{Product.Name}}</h5>
+						<blockquote>{{Product.Description}}</blockquote>
+						<strong>{{Product.Price | currency:'&#8377;'}}</strong><!--|currency is a FILTER. currency by default takes $  -->
+					
+		</div>
+		<div ng-show="ctrl.isTab(2)">
+			<h3>Reviews...</h3>
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="r in Product.Reviews">
+					<span class="badge">{{r.Rating}}</span>
+					<h4>{{r.Comments}}&mdash;<small>{{r.By}}</small></h4>
+				
+				</li>
+			</ul>
+		</div>		
+		<div ng-show="ctrl.isTab(3)" ng-controller="reviewsCtrl">
+			<h3>My Reviews...</h3>
+			<form name="reviewForm" ng-submit="save()" novalidate>
+				<!--By(email) -->
+				<div class="form-group">
+					<input class="form-control" ng-model="Review.By" required placeholder="abc@example.com"/>				
+					
+				</div>
+				<!-- Ratings  -->
+				<div class="form-group" >
+					<select class="form-control" ng-model="Review.Rating" required ng-options="r for r in [5,4,3,2,1]">
+						<option value=""> Select your rating</option>
+					</select>
+				</div>
+				<!--Comments-->
+				<div class="form-group" >
+				<textarea ng-model="Review.Comments" required placeholder="your Comments here" ng-minlength="10" ng-maxlength="250" name="tCom"></textarea>
+					
+				</div>
+				<div class="alert-danger" ng-messages="reviewForm.tCom.$error">
+					<div ng-message="required">Your comments are required</div>
+					<div ng-message="minlength">Comments should be min 10 characters.</div>
+					<div ng-message="maxlength">Comments should be max 250 characters.</div>
+				</div>
+				<button class="btn btn-sm btn-block btn-success" type="submit" ng-disabled="reviewForm.$invalid">Save</button>
+			</form>
+			<div class="well">
+				<strong>Is data Valid: {{reviewForm.$valid}}</strong>
+			</div>
+		</div>
+</div>

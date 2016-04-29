@@ -1,0 +1,24 @@
+<article class="panel panel-info">
+	<p class="panel-heading input-group">
+		<input type="text" ng-model="query" class="form-control" />
+		<span class="input-group-addon">
+			<button class="btn btn-primary btn-sm" ng-click="search()">Search</button>
+		</span>
+	</p>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<tr ng-repeat="B in Books">
+				<td>
+					<img ng-src="{{B.Image}}"class="thumbnail"/>	
+				</td>
+				<td>
+					<h4>{{B.Title}}</h4>
+					<p>
+						{{B.Description}}
+						<strong><a href="#/book/{{B.ID}}">more...</a></strong>
+					</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+</article>

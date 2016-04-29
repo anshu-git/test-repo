@@ -1,0 +1,18 @@
+/*//Style.css*/
+form .ng-pristine{
+	background-color : lightblue;
+	border-bottom-style: 2px blue;
+}
+form .ng-dirty.ng-valid{
+	background-color : lightgreen;
+	border-bottom-style: 2px solid green;
+}
+form .ng-dirty.ng-invalid{
+	background-color : lightpink;
+	border-bottom-style: 2px solid deeppink;
+
+}
+form .ng-dirty.ng-invalid-email{
+	background-color : yellow;
+	border-bottom-style: 2px solid red;
+}
